@@ -3,15 +3,16 @@ const { devChains, DECIMALS, INITIAL_ANSWER } = require("../helper-hardhat-confi
 
 module.exports = async ({getNamedAccounts , deployments}) => {
 const {deploy , log} = deployments
-const {user} = await getNamedAccounts();
+const {deployer} = await getNamedAccounts();
 const chainId = network.config.chainId
 
 if(devChains.includes(network.name)){
     log("------------local network---------")
     await deploy("MockV3Aggregator", {
-     from : user, 
+     from : deployer, 
      args : [DECIMALS, INITIAL_ANSWER],
-     log : true
+     log : true,
+     waitConfirmations : network.config.blockConfirmations || 1,
     })
 
     log("mocks deployed")
@@ -19,4 +20,4 @@ if(devChains.includes(network.name)){
 }
 }
 
-module.exports.tags = ["mocks"]
+module.exports.tags = ["mocks", "all"]

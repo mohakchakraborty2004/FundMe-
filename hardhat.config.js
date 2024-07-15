@@ -17,15 +17,13 @@ module.exports = {
       url: SEPOLIA_RPC_URL,
       accounts: [pvtKey],
       chainId: 11155111,
+      blockConfirmations : 6
     }
   },
   namedAccounts: {
     deployer : {
       default : 0,
     },
-    user : {
-      default : 0,
-    }
   },
   etherscan: {
     // Your API key for Etherscan

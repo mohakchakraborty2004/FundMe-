@@ -29,7 +29,8 @@ module.exports =  async ({getNamedAccounts, deployments}) => {
     const fundMe = await deploy("FundMe", {
         from: deployer,
         args: [ethUsdPriceFeedAddress],
-        log: true
+        log: true,
+        waitConfirmations : 1
     })
 
     log("---------------------------------------")
@@ -46,3 +47,5 @@ module.exports =  async ({getNamedAccounts, deployments}) => {
 
     log("-----verified successfully---------")
 } 
+
+module.exports.tags = ["all"]
